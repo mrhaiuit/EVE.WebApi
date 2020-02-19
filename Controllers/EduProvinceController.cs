@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert(EduProvinceInsertReq req)
+        public async Task<HttpResponseMessage> Insert([FromUri]EduProvinceInsertReq req)
         {
             var existobj = await EduProvinceBE.GetById(req);
             if (existobj != null)
@@ -65,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update(EduProvinceUpdateReq req)
+        public async Task<HttpResponseMessage> Update([FromUri]EduProvinceUpdateReq req)
         {
             var obj = await EduProvinceBE.GetById(req);
             if (obj == null)
@@ -81,7 +81,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(EduProvinceDeleteReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]EduProvinceDeleteReq req)
         {
             var obj = await EduProvinceBE.GetById(req);
             if (obj == null)

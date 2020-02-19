@@ -50,7 +50,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert(EvalCriteriaInsertReq req)
+        public async Task<HttpResponseMessage> Insert([FromUri]EvalCriteriaInsertReq req)
         {
             var existobj = await EvalCriteriaBE.GetById(req);
             if (existobj != null)
@@ -63,7 +63,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update(EvalCriteriaUpdateReq req)
+        public async Task<HttpResponseMessage> Update([FromUri]EvalCriteriaUpdateReq req)
         {
             var obj = await EvalCriteriaBE.GetById(req);
             if (obj == null)
@@ -79,7 +79,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(EvalCriteriaDeleteReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]EvalCriteriaDeleteReq req)
         {
             var obj = await EvalCriteriaBE.GetById(req);
             if (obj == null)

@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert(EvalPeriodInsertReq req)
+        public async Task<HttpResponseMessage> Insert([FromUri]EvalPeriodInsertReq req)
         {
             var existobj = await EvalPeriodBE.GetById(req);
             if (existobj != null)
@@ -65,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update(EvalPeriodUpdateReq req)
+        public async Task<HttpResponseMessage> Update([FromUri]EvalPeriodUpdateReq req)
         {
             var obj = await EvalPeriodBE.GetById(req);
             if (obj == null)
@@ -81,7 +81,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(EvalPeriodDeleteReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]EvalPeriodDeleteReq req)
         {
             var obj = await EvalPeriodBE.GetById(req);
             if (obj == null)

@@ -53,7 +53,7 @@ namespace EVE.WebApi.Controllers
 
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(ProvinceBaseReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]ProvinceBaseReq req)
         {
             var obj = await ProvinceBE.GetById(req);
             if (obj == null)

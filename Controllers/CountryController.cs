@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(CountryBaseReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]CountryBaseReq req)
         {
             var obj = await CountryBE.GetById(req);
             if (obj == null)

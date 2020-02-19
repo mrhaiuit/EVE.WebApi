@@ -67,7 +67,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert(EvalMasterInsertReq req)
+        public async Task<HttpResponseMessage> Insert([FromUri]EvalMasterInsertReq req)
         {
             var existobj = await EvalMasterBE.GetById(req);
             if (existobj != null)
@@ -80,7 +80,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update(EvalMasterUpdateReq req)
+        public async Task<HttpResponseMessage> Update([FromUri]EvalMasterUpdateReq req)
         {
             var obj = await EvalMasterBE.GetById(req);
             if (obj == null)
@@ -96,7 +96,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(EvalMasterDeleteReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]EvalMasterDeleteReq req)
         {
             var obj = await EvalMasterBE.GetById(req);
             if (obj == null)

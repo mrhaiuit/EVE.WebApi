@@ -64,7 +64,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert(UserGroupInsertReq req)
+        public async Task<HttpResponseMessage> Insert([FromUri]UserGroupInsertReq req)
         {
             var existobj = await UserGroupBE.GetById(req);
             if (existobj != null)
@@ -77,7 +77,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update(UserGroupUpdateReq req)
+        public async Task<HttpResponseMessage> Update([FromUri]UserGroupUpdateReq req)
         {
             var obj = await UserGroupBE.GetById(req);
             if (obj == null)
@@ -93,7 +93,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(UserGroupDeleteReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]UserGroupDeleteReq req)
         {
             var obj = await UserGroupBE.GetById(req);
             if (obj == null)

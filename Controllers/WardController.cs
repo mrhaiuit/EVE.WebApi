@@ -38,6 +38,32 @@ namespace EVE.WebApi.Controllers
 
             return this.OkResult();
         }
+        
+        [Route("GetByDistrictId")]
+        public async Task<HttpResponseMessage> GetByDistrictId([FromUri]DistrictBaseReq req)
+        {
+            var objs = await WardBE.GetByDistrictId(req);
+            if (objs != null
+               && objs.Any())
+            {
+                return this.OkResult(objs);
+            }
+
+            return this.OkResult();
+        }
+
+        [Route("GetByProvinceId")]
+        public async Task<HttpResponseMessage> GetByProvinceId([FromUri]ProvinceBaseReq req)
+        {
+            var objs = await WardBE.GetByProvinceId(req);
+            if (objs != null
+               && objs.Any())
+            {
+                return this.OkResult(objs);
+            }
+
+            return this.OkResult();
+        }
 
         [Route("getById")]
         public HttpResponseMessage GetById([FromUri] WardBaseReq req)

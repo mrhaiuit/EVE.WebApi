@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert(FormGroupInsertReq req)
+        public async Task<HttpResponseMessage> Insert([FromUri]FormGroupInsertReq req)
         {
             var existobj = await FormGroupBE.GetById(req);
             if (existobj != null)
@@ -65,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update(FormGroupUpdateReq req)
+        public async Task<HttpResponseMessage> Update([FromUri]FormGroupUpdateReq req)
         {
             var obj = await FormGroupBE.GetById(req);
             if (obj == null)
@@ -81,7 +81,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(FormGroupDeleteReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]FormGroupDeleteReq req)
         {
             var obj = await FormGroupBE.GetById(req);
             if (obj == null)

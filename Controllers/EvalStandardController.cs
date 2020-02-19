@@ -64,7 +64,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert(EvalStandardInsertReq req)
+        public async Task<HttpResponseMessage> Insert([FromUri]EvalStandardInsertReq req)
         {
             var existobj = await EvalStandardBE.GetById(req);
             if (existobj != null)
@@ -77,7 +77,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update(EvalStandardUpdateReq req)
+        public async Task<HttpResponseMessage> Update([FromUri]EvalStandardUpdateReq req)
         {
             var obj = await EvalStandardBE.GetById(req);
             if (obj == null)
@@ -93,7 +93,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(EvalStandardDeleteReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]EvalStandardDeleteReq req)
         {
             var obj = await EvalStandardBE.GetById(req);
             if (obj == null)

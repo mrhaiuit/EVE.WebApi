@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert(EvalDetailInsertReq req)
+        public async Task<HttpResponseMessage> Insert([FromUri]EvalDetailInsertReq req)
         {
             var existobj = await EvalDetailBE.GetById(req);
             if (existobj != null)
@@ -65,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update(EvalDetailUpdateReq req)
+        public async Task<HttpResponseMessage> Update([FromUri]EvalDetailUpdateReq req)
         {
             var obj = await EvalDetailBE.GetById(req);
             if (obj == null)
@@ -81,7 +81,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(EvalDetailDeleteReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]EvalDetailDeleteReq req)
         {
             var obj = await EvalDetailBE.GetById(req);
             if (obj == null)

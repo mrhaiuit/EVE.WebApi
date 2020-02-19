@@ -39,6 +39,19 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
+        [Route("GetByEduProvinceId")]
+        public async Task<HttpResponseMessage> GetByEduProvinceId([FromUri]EduProvinceBaseReq req)
+        {
+            var objs = await EduDepartmentBE.GetByEduProvinceId(req);
+            if (objs != null
+               && objs.Any())
+            {
+                return this.OkResult(objs);
+            }
+
+            return this.OkResult();
+        }
+
         [Route("getById")]
         public HttpResponseMessage GetById([FromUri] EduDepartmentGetByIdReq req)
         {
@@ -52,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert(EduDepartmentInsertReq req)
+        public async Task<HttpResponseMessage> Insert([FromUri]EduDepartmentInsertReq req)
         {
             var existobj = await EduDepartmentBE.GetById(req);
             if (existobj != null)
@@ -65,7 +78,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update(EduDepartmentUpdateReq req)
+        public async Task<HttpResponseMessage> Update([FromUri]EduDepartmentUpdateReq req)
         {
             var obj = await EduDepartmentBE.GetById(req);
             if (obj == null)
@@ -81,7 +94,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(EduDepartmentDeleteReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]EduDepartmentDeleteReq req)
         {
             var obj = await EduDepartmentBE.GetById(req);
             if (obj == null)

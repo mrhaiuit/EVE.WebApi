@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAnzZQkkXCaEesMMGVT6gsZwAAAAACAAAAAAAQZgAAAAEAACAAAAAYRJvEboWmeKQdMyttqzBLwG8/TfLVkm8sf8voHRIm3gAAAAAOgAAAAAIAACAAAACwZGN367i851TorwRjhIJuhSNYg6XILQAPI5Vu5pX4gBAAAACKyQgzkjFQ6hQ18z5Kp3XuQAAAAJFi/QDEKXb4nFuPTI2lbagI+L4kNKvhBVmyfRV2foGJ20kxBRApnIyA9atcT3iOKa+iP0zNFc+/QkNRkWyI0EM=</EncryptedPassword>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZR/cyELjEEqx/7X0aI+6zgAAAAACAAAAAAADZgAAwAAAABAAAACUlsHICbKv+KgZN8XBmyo/AAAAAASAAACgAAAAEAAAAMloRN4VqeV0SqMgg3W259kQAAAA8kTvoRBxhD/VNd3AUvQk6RQAAACvjeEq2Z4rvRCu9uOXAHCMF2Ot2w==</EncryptedPassword>
     <_PublishTargetUrl>ftp://27.0.15.8 /</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>

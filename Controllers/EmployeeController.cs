@@ -51,7 +51,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert(EmployeeInsertReq req)
+        public async Task<HttpResponseMessage> Insert([FromUri]EmployeeInsertReq req)
         {
             var existobj = await employeeBE.GetById(req);
             if (existobj != null)
@@ -80,7 +80,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(EmployeeDeleteReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]EmployeeDeleteReq req)
         {
             var obj = await employeeBE.GetById(req);
             if (obj == null)

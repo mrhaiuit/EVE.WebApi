@@ -39,6 +39,32 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
+        [Route("GetByEduDepartmentId")]
+        public async Task<HttpResponseMessage> GetByEduDepartmentId([FromUri]EduDepartmentBaseReq req)
+        {
+            var objs = await SchoolBE.GetByEduDepartmentId(req);
+            if (objs != null
+               && objs.Any())
+            {
+                return this.OkResult(objs);
+            }
+
+            return this.OkResult();
+        }
+
+        [Route("GetByEduProvinceId")]
+        public async Task<HttpResponseMessage> GetByEduProvinceId([FromUri]EduProvinceBaseReq req)
+        {
+            var objs = await SchoolBE.GetByEduProvinceId(req);
+            if (objs != null
+               && objs.Any())
+            {
+                return this.OkResult(objs);
+            }
+
+            return this.OkResult();
+        }
+
         [Route("getById")]
         public HttpResponseMessage GetById([FromUri] SchoolGetByIdReq req)
         {
@@ -52,7 +78,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert(SchoolInsertReq req)
+        public async Task<HttpResponseMessage> Insert([FromUri]SchoolInsertReq req)
         {
             var existobj = await SchoolBE.GetById(req);
             if (existobj != null)
@@ -65,7 +91,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update(SchoolUpdateReq req)
+        public async Task<HttpResponseMessage> Update([FromUri]SchoolUpdateReq req)
         {
             var obj = await SchoolBE.GetById(req);
             if (obj == null)
@@ -81,7 +107,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(SchoolDeleteReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]SchoolDeleteReq req)
         {
             var obj = await SchoolBE.GetById(req);
             if (obj == null)

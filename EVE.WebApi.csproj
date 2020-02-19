@@ -258,9 +258,9 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\Authentication.pubxml" />
-    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\EVELocal.pubxml" />
     <None Include="Properties\PublishProfiles\ftpEVE.pubxml" />
+    <None Include="Properties\PublishProfiles\ftp_EVE.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EVE.ApiModels\EVE.ApiModels.csproj">

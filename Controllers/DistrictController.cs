@@ -39,6 +39,19 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
+        [Route("GetByProvinceId")]
+        public async Task<HttpResponseMessage> GetByProvinceId([FromUri]ProvinceBaseReq req)
+        {
+            var objs = await DistrictBE.GetByProvinceId(req);
+            if (objs != null
+               && objs.Any())
+            {
+                return this.OkResult(objs);
+            }
+
+            return this.OkResult();
+        }
+
         [Route("getById")]
         public HttpResponseMessage GetById([FromUri] DistrictBaseReq req)
         {
@@ -52,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(DistrictBaseReq req)
+        public async Task<HttpResponseMessage> Delete([FromUri]DistrictBaseReq req)
         {
             var obj = await DistrictBE.GetById(req);
             if (obj == null)
