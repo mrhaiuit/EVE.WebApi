@@ -66,9 +66,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] WardBaseReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] WardBaseReq req)
         {
-            var obj = WardBE.GetById(req);
+            var obj =await WardBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());

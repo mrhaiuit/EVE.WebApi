@@ -53,9 +53,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] DistrictBaseReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] DistrictBaseReq req)
         {
-            var obj = DistrictBE.GetById(req);
+            var obj =await DistrictBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());
@@ -65,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete([FromUri]DistrictBaseReq req)
+        public async Task<HttpResponseMessage> Delete(DistrictBaseReq req)
         {
             var obj = await DistrictBE.GetById(req);
             if (obj == null)

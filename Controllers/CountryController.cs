@@ -40,9 +40,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] CountryBaseReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] CountryBaseReq req)
         {
-            var obj = CountryBE.GetById(req);
+            var obj =await CountryBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());
@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete([FromUri]CountryBaseReq req)
+        public async Task<HttpResponseMessage> Delete(CountryBaseReq req)
         {
             var obj = await CountryBE.GetById(req);
             if (obj == null)

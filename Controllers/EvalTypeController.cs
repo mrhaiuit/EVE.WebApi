@@ -40,9 +40,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] EvalTypeBaseReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] EvalTypeBaseReq req)
         {
-            var obj = EvalTypeBE.GetById(req);
+            var obj =await EvalTypeBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());

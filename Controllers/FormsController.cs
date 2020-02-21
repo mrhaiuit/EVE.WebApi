@@ -40,9 +40,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] FormsGetByIdReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] FormsGetByIdReq req)
         {
-            var obj = FormsBE.GetById(req);
+            var obj =await FormsBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());
@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert([FromUri]FormsInsertReq req)
+        public async Task<HttpResponseMessage> Insert(FormsInsertReq req)
         {
             var existobj = await FormsBE.GetById(req);
             if (existobj != null)
@@ -65,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update([FromUri]FormsUpdateReq req)
+        public async Task<HttpResponseMessage> Update(FormsUpdateReq req)
         {
             var obj = await FormsBE.GetById(req);
             if (obj == null)
@@ -81,7 +81,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete([FromUri]FormsDeleteReq req)
+        public async Task<HttpResponseMessage> Delete(FormsDeleteReq req)
         {
             var obj = await FormsBE.GetById(req);
             if (obj == null)

@@ -40,9 +40,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] EvalDetailGetByIdReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] EvalDetailGetByIdReq req)
         {
-            var obj = EvalDetailBE.GetById(req);
+            var obj =await EvalDetailBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());
@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert([FromUri]EvalDetailInsertReq req)
+        public async Task<HttpResponseMessage> Insert(EvalDetailInsertReq req)
         {
             var existobj = await EvalDetailBE.GetById(req);
             if (existobj != null)
@@ -65,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update([FromUri]EvalDetailUpdateReq req)
+        public async Task<HttpResponseMessage> Update(EvalDetailUpdateReq req)
         {
             var obj = await EvalDetailBE.GetById(req);
             if (obj == null)
@@ -81,7 +81,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete([FromUri]EvalDetailDeleteReq req)
+        public async Task<HttpResponseMessage> Delete(EvalDetailDeleteReq req)
         {
             var obj = await EvalDetailBE.GetById(req);
             if (obj == null)

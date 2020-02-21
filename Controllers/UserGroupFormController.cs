@@ -40,9 +40,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] UserGroupFormGetByIdReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] UserGroupFormGetByIdReq req)
         {
-            var obj = UserGroupFormBE.GetById(req);
+            var obj =await UserGroupFormBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());
@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert([FromUri]UserGroupFormInsertReq req)
+        public async Task<HttpResponseMessage> Insert(UserGroupFormInsertReq req)
         {
             var existobj = await UserGroupFormBE.GetById(req);
             if (existobj != null)
@@ -65,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update([FromUri]UserGroupFormUpdateReq req)
+        public async Task<HttpResponseMessage> Update(UserGroupFormUpdateReq req)
         {
             var obj = await UserGroupFormBE.GetById(req);
             if (obj == null)
@@ -81,7 +81,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete([FromUri]UserGroupFormDeleteReq req)
+        public async Task<HttpResponseMessage> Delete(UserGroupFormDeleteReq req)
         {
             var obj = await UserGroupFormBE.GetById(req);
             if (obj == null)

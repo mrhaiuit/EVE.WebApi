@@ -40,9 +40,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] FormGroupGetByIdReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] FormGroupGetByIdReq req)
         {
-            var obj = FormGroupBE.GetById(req);
+            var obj =await FormGroupBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());
@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert([FromUri]FormGroupInsertReq req)
+        public async Task<HttpResponseMessage> Insert(FormGroupInsertReq req)
         {
             var existobj = await FormGroupBE.GetById(req);
             if (existobj != null)
@@ -65,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update([FromUri]FormGroupUpdateReq req)
+        public async Task<HttpResponseMessage> Update(FormGroupUpdateReq req)
         {
             var obj = await FormGroupBE.GetById(req);
             if (obj == null)
@@ -81,7 +81,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete([FromUri]FormGroupDeleteReq req)
+        public async Task<HttpResponseMessage> Delete(FormGroupDeleteReq req)
         {
             var obj = await FormGroupBE.GetById(req);
             if (obj == null)

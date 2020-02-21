@@ -40,9 +40,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] EvalGuideGetByIdReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] EvalGuideGetByIdReq req)
         {
-            var obj = EvalGuideBE.GetById(req);
+            var obj =await EvalGuideBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());
@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert([FromUri]EvalGuideInsertReq req)
+        public async Task<HttpResponseMessage> Insert(EvalGuideInsertReq req)
         {
             var existobj = await EvalGuideBE.GetById(req);
             if (existobj != null)
@@ -65,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update([FromUri]EvalGuideUpdateReq req)
+        public async Task<HttpResponseMessage> Update(EvalGuideUpdateReq req)
         {
             var obj = await EvalGuideBE.GetById(req);
             if (obj == null)
@@ -81,7 +81,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete([FromUri]EvalGuideDeleteReq req)
+        public async Task<HttpResponseMessage> Delete(EvalGuideDeleteReq req)
         {
             var obj = await EvalGuideBE.GetById(req);
             if (obj == null)

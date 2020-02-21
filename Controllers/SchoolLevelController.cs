@@ -40,9 +40,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] SchoolLevelGetByIdReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] SchoolLevelGetByIdReq req)
         {
-            var obj = SchoolLevelBE.GetById(req);
+            var obj =await SchoolLevelBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());
@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert([FromUri]SchoolLevelInsertReq req)
+        public async Task<HttpResponseMessage> Insert(SchoolLevelInsertReq req)
         {
             var existobj = await SchoolLevelBE.GetById(req);
             if (existobj != null)
@@ -65,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update([FromUri]SchoolLevelUpdateReq req)
+        public async Task<HttpResponseMessage> Update(SchoolLevelUpdateReq req)
         {
             var obj = await SchoolLevelBE.GetById(req);
             if (obj == null)
@@ -81,7 +81,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete([FromUri]SchoolLevelDeleteReq req)
+        public async Task<HttpResponseMessage> Delete(SchoolLevelDeleteReq req)
         {
             var obj = await SchoolLevelBE.GetById(req);
             if (obj == null)

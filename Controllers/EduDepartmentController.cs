@@ -53,9 +53,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] EduDepartmentGetByIdReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] EduDepartmentGetByIdReq req)
         {
-            var obj = EduDepartmentBE.GetById(req);
+            var obj =await EduDepartmentBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());
@@ -65,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert([FromUri]EduDepartmentInsertReq req)
+        public async Task<HttpResponseMessage> Insert(EduDepartmentInsertReq req)
         {
             var existobj = await EduDepartmentBE.GetById(req);
             if (existobj != null)
@@ -78,7 +78,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update([FromUri]EduDepartmentUpdateReq req)
+        public async Task<HttpResponseMessage> Update(EduDepartmentUpdateReq req)
         {
             var obj = await EduDepartmentBE.GetById(req);
             if (obj == null)
@@ -94,7 +94,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete([FromUri]EduDepartmentDeleteReq req)
+        public async Task<HttpResponseMessage> Delete(EduDepartmentDeleteReq req)
         {
             var obj = await EduDepartmentBE.GetById(req);
             if (obj == null)

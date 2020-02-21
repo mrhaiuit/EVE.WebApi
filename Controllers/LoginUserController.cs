@@ -40,9 +40,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] LoginUserGetByIdReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] LoginUserGetByIdReq req)
         {
-            var obj = LoginUserBE.GetById(req);
+            var obj =await LoginUserBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());
@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Insert([FromUri]LoginUserInsertReq req)
+        public async Task<HttpResponseMessage> Insert(LoginUserInsertReq req)
         {
             var existobj = await LoginUserBE.GetById(req);
             if (existobj != null)
@@ -65,7 +65,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> Update([FromUri]LoginUserUpdateReq req)
+        public async Task<HttpResponseMessage> Update(LoginUserUpdateReq req)
         {
             var obj = await LoginUserBE.GetById(req);
             if (obj == null)
@@ -81,7 +81,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete([FromUri]LoginUserDeleteReq req)
+        public async Task<HttpResponseMessage> Delete(LoginUserDeleteReq req)
         {
             var obj = await LoginUserBE.GetById(req);
             if (obj == null)
