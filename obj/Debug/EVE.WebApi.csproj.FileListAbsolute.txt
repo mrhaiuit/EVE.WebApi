@@ -1,8 +1,0 @@
-E:\HAI\EVE\Backend\V2\Build\App.Config
-E:\HAI\EVE\Backend\V2\Build\EVE.WebApi.dll.config
-E:\HAI\EVE\Backend\V2\Build\EVE.WebApi.dll
-E:\HAI\EVE\Backend\V2\Build\EVE.WebApi.pdb
-E:\HAI\EVE\Backend\V2\Components\EVE.WebApi\obj\Debug\EVE.WebApi.csprojAssemblyReference.cache
-E:\HAI\EVE\Backend\V2\Components\EVE.WebApi\obj\Debug\EVE.WebApi.csproj.CopyComplete
-E:\HAI\EVE\Backend\V2\Components\EVE.WebApi\obj\Debug\EVE.WebApi.dll
-E:\HAI\EVE\Backend\V2\Components\EVE.WebApi\obj\Debug\EVE.WebApi.pdb

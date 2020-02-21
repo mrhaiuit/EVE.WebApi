@@ -8,7 +8,6 @@ using EVE.ApiModels.Authentication.Request;
 using EVE.Bussiness;
 using EVE.Commons;
 using EVE.Data;
-using EVE.WebApi.Authentication.Helper;
 using EVE.WebApi.Shared;
 using EVE.WebApi.Shared.Response;
 

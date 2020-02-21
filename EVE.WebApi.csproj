@@ -33,10 +33,11 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Build\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -215,6 +216,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Helper\AppUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -222,7 +224,9 @@
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Global.asax" />
+    <Content Include="Global.asax">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -280,7 +284,7 @@
       <Name>EVE.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\EVE.WebApi.Shared\EVE.WebApi.Shared.csproj">
-      <Project>{BA7A75ED-1606-4F70-99B0-641D5A322BDA}</Project>
+      <Project>{ba7a75ed-1606-4f70-99b0-641d5a322bda}</Project>
       <Name>EVE.WebApi.Shared</Name>
     </ProjectReference>
   </ItemGroup>

@@ -4,12 +4,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
-using EVE.ApiModels.Authentication.Request;
 using EVE.ApiModels.Catalog;
 using EVE.Bussiness;
 using EVE.Commons;
-using EVE.Data;
-using EVE.WebApi.Authentication.Helper;
 using EVE.WebApi.Shared;
 using EVE.WebApi.Shared.Response;
 
