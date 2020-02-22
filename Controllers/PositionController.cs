@@ -29,8 +29,7 @@ namespace EVE.WebApi.Controllers
             if (objs != null
                && objs.Any())
             {
-                return this.OkResult(objs.ToList()
-                                           .RemoveWhiteSpaceForList());
+                return this.OkResult(objs.ToList());
             }
 
             return this.OkResult();
@@ -39,10 +38,10 @@ namespace EVE.WebApi.Controllers
         [Route("getById")]
         public async Task<HttpResponseMessage> GetById([FromUri] PositionBaseReq req)
         {
-            var obj =await PositionBE.GetById(req);
+            var obj = await PositionBE.GetById(req);
             if (obj != null)
             {
-                return this.OkResult(obj.RemoveWhiteSpace());
+                return this.OkResult(obj);
             }
 
             return this.ErrorResult(new Error(EnumError.PositionNotExist));
@@ -51,10 +50,10 @@ namespace EVE.WebApi.Controllers
         [Route("GetByEduLevel")]
         public async Task<HttpResponseMessage> GetByEduLevel([FromUri] PositionByEduLevelReq req)
         {
-            var obj =await PositionBE.GetByEduLevel(req);
+            var obj = await PositionBE.GetByEduLevel(req);
             if (obj != null)
             {
-                return this.OkResult(obj.RemoveWhiteSpace());
+                return this.OkResult(obj);
             }
 
             return this.ErrorResult(new Error(EnumError.PositionNotExist));

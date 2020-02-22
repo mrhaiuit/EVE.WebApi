@@ -30,20 +30,32 @@ namespace EVE.WebApi.Controllers
             if (objs != null
                && objs.Any())
             {
-                return this.OkResult(objs.ToList()
-                                           .RemoveWhiteSpaceForList());
+                return this.OkResult(objs.ToList());
             }
 
             return this.OkResult();
         }
 
-        [Route("GetEvalCriteriaByStandard")]
-        public HttpResponseMessage GetEvalCriteriaByStandard([FromUri] int StandardId)
+
+        [Route("GetByLevelAndType")]
+        public async Task<HttpResponseMessage> GetByLevelAndType([FromUri] EvalStandardGetByLevelAndTypeReq req)
         {
-            var obj = EvalStandardBE.GetEvalCriteriaByStandard(StandardId);
+            var obj = await EvalStandardBE.GetByLevelAndType(req);
             if (obj != null)
             {
-                return this.OkResult(obj.RemoveWhiteSpace());
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.DataNotFound));
+        }
+
+        [Route("GetEvalCriteriaByStandard")]
+        public async Task< HttpResponseMessage> GetEvalCriteriaByStandard([FromUri] int StandardId)
+        {
+            var obj =await EvalStandardBE.GetEvalCriteriaByStandard(StandardId);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
             }
 
             return this.ErrorResult(new Error(EnumError.CateriaNotExistWithStandard));
@@ -55,7 +67,7 @@ namespace EVE.WebApi.Controllers
             var obj =await EvalStandardBE.GetById(req);
             if (obj != null)
             {
-                return this.OkResult(obj.RemoveWhiteSpace());
+                return this.OkResult(obj);
             }
 
             return this.ErrorResult(new Error(EnumError.EvalStandardNotExist));

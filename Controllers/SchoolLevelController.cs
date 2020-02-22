@@ -17,10 +17,13 @@ namespace EVE.WebApi.Controllers
     public class SchoolLevelController : BaseController
     {
         private readonly ISchoolLevelBE SchoolLevelBE;
+        private readonly IEduLevelBE EduLevelBE;
         public SchoolLevelController(ISchoolLevelBE _SchoolLevelBE,
-                               IMapper mapper) : base(mapper)
+            IEduLevelBE eduLevelBE,
+            IMapper mapper) : base(mapper)
         {
             SchoolLevelBE = _SchoolLevelBE;
+            EduLevelBE = eduLevelBE;
         }
 
         [Route("all")]
@@ -30,8 +33,7 @@ namespace EVE.WebApi.Controllers
             if (objs != null
                && objs.Any())
             {
-                return this.OkResult(objs.ToList()
-                                           .RemoveWhiteSpaceForList());
+                return this.OkResult(objs.ToList());
             }
 
             return this.OkResult();
@@ -43,7 +45,7 @@ namespace EVE.WebApi.Controllers
             var obj =await SchoolLevelBE.GetById(req);
             if (obj != null)
             {
-                return this.OkResult(obj.RemoveWhiteSpace());
+                return this.OkResult(obj);
             }
 
             return this.ErrorResult(new Error(EnumError.SchoolLevelNotExist));

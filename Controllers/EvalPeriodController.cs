@@ -30,11 +30,21 @@ namespace EVE.WebApi.Controllers
             if (objs != null
                && objs.Any())
             {
-                return this.OkResult(objs.ToList()
-                                           .RemoveWhiteSpaceForList());
+                return this.OkResult(objs.ToList());
             }
 
             return this.OkResult();
+        }
+        [Route("GetByYearAndSchool")]
+        public async Task<HttpResponseMessage> GetByYearAndSchool([FromUri] EvalPeriodGetByYearAndSchoolReq req)
+        {
+            var obj = await EvalPeriodBE.GetByYearAndSchool(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.EvalPeriodNotExist));
         }
 
         [Route("getById")]
@@ -43,7 +53,7 @@ namespace EVE.WebApi.Controllers
             var obj = await EvalPeriodBE.GetById(req);
             if (obj != null)
             {
-                return this.OkResult(obj.RemoveWhiteSpace());
+                return this.OkResult(obj);
             }
 
             return this.ErrorResult(new Error(EnumError.EvalPeriodNotExist));

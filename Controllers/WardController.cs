@@ -29,8 +29,7 @@ namespace EVE.WebApi.Controllers
             if (objs != null
                && objs.Any())
             {
-                return this.OkResult(objs.ToList()
-                                           .RemoveWhiteSpaceForList());
+                return this.OkResult(objs.ToList());
             }
 
             return this.OkResult();
@@ -68,7 +67,7 @@ namespace EVE.WebApi.Controllers
             var obj =await WardBE.GetById(req);
             if (obj != null)
             {
-                return this.OkResult(obj.RemoveWhiteSpace());
+                return this.OkResult(obj);
             }
 
             return this.ErrorResult(new Error(EnumError.WardNotExist));

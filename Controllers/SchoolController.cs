@@ -30,8 +30,21 @@ namespace EVE.WebApi.Controllers
             if (objs != null
                && objs.Any())
             {
-                return this.OkResult(objs.ToList()
-                                           .RemoveWhiteSpaceForList());
+                return this.OkResult(objs.ToList());
+            }
+
+            return this.OkResult();
+        }
+
+        // Task<List<School>> GetByUserGroupEmployee(UserGroupEmployeeReq req)
+        [Route("GetByUserGroupEmployee")]
+        public async Task<HttpResponseMessage> GetByUserGroupEmployee([FromUri]UserGroupEmployeeReq req)
+        {
+            var objs = await SchoolBE.GetByUserGroupEmployee(req);
+            if (objs != null
+               && objs.Any())
+            {
+                return this.OkResult(objs);
             }
 
             return this.OkResult();
@@ -69,7 +82,7 @@ namespace EVE.WebApi.Controllers
             var obj = await SchoolBE.GetById(req);
             if (obj != null)
             {
-                return this.OkResult(obj.RemoveWhiteSpace());
+                return this.OkResult(obj);
             }
 
             return this.ErrorResult(new Error(EnumError.SchoolNotExist));
