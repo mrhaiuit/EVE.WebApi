@@ -38,7 +38,7 @@ namespace EVE.WebApi.Controllers
         [Route("GetByYearAndSchool")]
         public async Task<HttpResponseMessage> GetByYearAndSchool([FromUri] EvalPeriodGetByYearAndSchoolReq req)
         {
-            var obj = await EvalPeriodBE.GetByYearAndSchool(req);
+            var obj =  EvalPeriodBE.GetByYearAndSchool(req);
             if (obj != null)
             {
                 return this.OkResult(obj);
