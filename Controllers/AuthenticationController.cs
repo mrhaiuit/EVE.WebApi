@@ -52,11 +52,11 @@ namespace EVE.WebApi.Controllers
 
         [HttpGet]
         [Route("GetUserGroupByUserName")]
-        public async Task<HttpResponseMessage> GetUserGroupByUserName([FromUri]string userName)
+        public async Task<HttpResponseMessage> GetUserGroupByUserName([FromUri]GetUserGroupByUserNameReq req)
         {
             try
             {
-                var obj = await _loginBE.GetUserGroupByUserName(userName);
+                var obj = await _loginBE.GetUserGroupByUserName(req);
                 if (obj == null || !obj.Any())
                 {
                     return this.ErrorResult(new Error(EnumError.UserNotGrandPermission));
