@@ -4,12 +4,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
-using EVE.ApiModels.Authentication.Request;
 using EVE.ApiModels.Catalog;
 using EVE.Bussiness;
 using EVE.Commons;
 using EVE.Data;
-using EVE.WebApi.Authentication.Helper;
 using EVE.WebApi.Shared;
 using EVE.WebApi.Shared.Response;
 
@@ -52,9 +50,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] EvalStandardGetByIdReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] EvalStandardGetByIdReq req)
         {
-            var obj = EvalStandardBE.GetById(req);
+            var obj =await EvalStandardBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());

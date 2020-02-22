@@ -8,7 +8,6 @@ using EVE.ApiModels.Authentication.Request;
 using EVE.Bussiness;
 using EVE.Commons;
 using EVE.Data;
-using EVE.WebApi.Authentication.Helper;
 using EVE.WebApi.Shared;
 using EVE.WebApi.Shared.Response;
 
@@ -39,9 +38,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] EmployeeGetByIdReq req)
+        public async Task<HttpResponseMessage> GetById([FromUri] EmployeeGetByIdReq req)
         {
-            var obj = employeeBE.GetById(req);
+            var obj =await employeeBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());

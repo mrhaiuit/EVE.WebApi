@@ -37,10 +37,22 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
-        [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] EvalCriteriaGetByIdReq req)
+        [Route("GetByStandardId")]
+        public async Task<HttpResponseMessage> GetByStandardId([FromUri] EvalStandardBaseReq req)
         {
-            var obj = EvalCriteriaBE.GetById(req);
+            var obj = await EvalCriteriaBE.GetByStandardId(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj.RemoveWhiteSpace());
+            }
+
+            return this.ErrorResult(new Error(EnumError.EvalCriteriaNotExist));
+        }
+
+        [Route("getById")]
+        public async Task<HttpResponseMessage> GetById([FromUri] EvalCriteriaGetByIdReq req)
+        {
+            var obj = await EvalCriteriaBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());

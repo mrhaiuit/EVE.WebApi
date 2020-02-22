@@ -4,12 +4,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
-using EVE.ApiModels.Authentication.Request;
 using EVE.ApiModels.Catalog;
 using EVE.Bussiness;
 using EVE.Commons;
 using EVE.Data;
-using EVE.WebApi.Authentication.Helper;
 using EVE.WebApi.Shared;
 using EVE.WebApi.Shared.Response;
 
@@ -39,10 +37,23 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
-        [Route("getById")]
-        public HttpResponseMessage GetById([FromUri] EduDepartmentGetByIdReq req)
+        [Route("GetByEduProvinceId")]
+        public async Task<HttpResponseMessage> GetByEduProvinceId([FromUri]EduProvinceBaseReq req)
         {
-            var obj = EduDepartmentBE.GetById(req);
+            var objs = await EduDepartmentBE.GetByEduProvinceId(req);
+            if (objs != null
+               && objs.Any())
+            {
+                return this.OkResult(objs);
+            }
+
+            return this.OkResult();
+        }
+
+        [Route("getById")]
+        public async Task<HttpResponseMessage> GetById([FromUri] EduDepartmentGetByIdReq req)
+        {
+            var obj =await EduDepartmentBE.GetById(req);
             if (obj != null)
             {
                 return this.OkResult(obj.RemoveWhiteSpace());
