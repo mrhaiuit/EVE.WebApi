@@ -9,7 +9,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NameOfLastUsedPublishProfile>CustomProfile</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>ftpEVE</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
