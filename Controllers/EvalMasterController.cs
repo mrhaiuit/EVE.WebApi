@@ -39,10 +39,22 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
-        [Route("getEvalDetailByMasterId")]
-        public HttpResponseMessage GetEvalDetailByMasterId([FromUri] int masterId)
+        [Route("ExeEvalDetailByMasterId")]
+        public HttpResponseMessage ExeEvalDetailByMasterId([FromUri] ExeEvalDetailByMasterIdReq req)
         {
-            var obj = EvalMasterBE.GetEvalDetailByMasterId(masterId);
+            var obj = EvalMasterBE.ExeEvalDetailByMasterId(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.EvalDetailNotExist));
+        }
+
+        [Route("getEvalDetailByMasterId")]
+        public HttpResponseMessage GetEvalDetailByMasterId([FromUri] EvalMasterBaseReq req)
+        {
+            var obj = EvalMasterBE.GetEvalDetailByMasterId(req);
             if (obj != null)
             {
                 return this.OkResult(obj);
