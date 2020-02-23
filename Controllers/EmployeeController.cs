@@ -51,6 +51,9 @@ namespace EVE.WebApi.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> Insert(EmployeeInsertReq req)
         {
+            var employee = await employeeBE.GetByUserName(new UserNameReq() { UserName = req.UserName });
+            if (employee != null)
+                return this.ErrorResult(new Error(EnumError.UserNameHasExits));
             var existobj = await employeeBE.GetById(req);
             if (existobj != null)
             {

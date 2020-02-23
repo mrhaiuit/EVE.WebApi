@@ -52,7 +52,7 @@ namespace EVE.WebApi.Controllers
 
         [HttpGet]
         [Route("GetUserGroupByUserName")]
-        public async Task<HttpResponseMessage> GetUserGroupByUserName([FromUri]GetUserGroupByUserNameReq req)
+        public async Task<HttpResponseMessage> GetUserGroupByUserName([FromUri]UserNameReq req)
         {
             try
             {
