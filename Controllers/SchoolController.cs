@@ -36,7 +36,6 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
-        // Task<List<School>> GetByUserGroupEmployee(UserGroupEmployeeReq req)
         [Route("GetByUserGroupEmployee")]
         public async Task<HttpResponseMessage> GetByUserGroupEmployee([FromUri]UserGroupEmployeeReq req)
         {
@@ -96,9 +95,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.SchoolHasExist));
             }
-
-            SchoolBE.Insert(Mapper.Map<School>(req));
-            return this.OkResult();
+            if (SchoolBE.Insert(Mapper.Map<School>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -111,10 +111,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            SchoolBE.Update(obj);
-
-            return this.OkResult();
+            if (SchoolBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -125,10 +125,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.SchoolNotExist));
             }
-
-            SchoolBE.Delete(obj);
-
-            return this.OkResult();
+            if (SchoolBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

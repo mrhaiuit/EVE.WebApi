@@ -59,9 +59,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.SchoolLevelHasExist));
             }
-
-            SchoolLevelBE.Insert(Mapper.Map<SchoolLevel>(req));
-            return this.OkResult();
+            if (SchoolLevelBE.Insert(Mapper.Map<SchoolLevel>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -74,10 +75,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            SchoolLevelBE.Update(obj);
-
-            return this.OkResult();
+            if (SchoolLevelBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -88,10 +89,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.SchoolLevelNotExist));
             }
-
-            SchoolLevelBE.Delete(obj);
-
-            return this.OkResult();
+            if (SchoolLevelBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

@@ -57,8 +57,10 @@ namespace EVE.WebApi.Controllers
                 return this.ErrorResult(new Error(EnumError.EvalGuideHasExist));
             }
 
-            EvalGuideBE.Insert(Mapper.Map<EvalGuide>(req));
-            return this.OkResult();
+            if (EvalGuideBE.Insert(Mapper.Map<EvalGuide>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -71,10 +73,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            EvalGuideBE.Update(obj);
-
-            return this.OkResult();
+            if (EvalGuideBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -85,10 +87,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.EvalGuideNotExist));
             }
-
-            EvalGuideBE.Delete(obj);
-
-            return this.OkResult();
+            if (EvalGuideBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

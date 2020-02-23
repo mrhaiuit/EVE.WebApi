@@ -56,9 +56,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.UserGroupEmployeeHasExist));
             }
-
-            UserGroupEmployeeBE.Insert(Mapper.Map<UserGroup_Employee>(req));
-            return this.OkResult();
+            if (UserGroupEmployeeBE.Insert(Mapper.Map<UserGroup_Employee>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -71,10 +72,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            UserGroupEmployeeBE.Update(obj);
-
-            return this.OkResult();
+            if (UserGroupEmployeeBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -85,10 +86,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.UserGroupEmployeeNotExist));
             }
-
-            UserGroupEmployeeBE.Delete(obj);
-
-            return this.OkResult();
+            if (UserGroupEmployeeBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

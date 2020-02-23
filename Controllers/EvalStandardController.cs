@@ -81,9 +81,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.EvalStandardHasExist));
             }
-
-            EvalStandardBE.Insert(Mapper.Map<EvalStandard>(req));
-            return this.OkResult();
+            if (EvalStandardBE.Insert(Mapper.Map<EvalStandard>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -96,10 +97,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            EvalStandardBE.Update(obj);
-
-            return this.OkResult();
+            if (EvalStandardBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -110,10 +111,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.EvalStandardNotExist));
             }
-
-            EvalStandardBE.Delete(obj);
-
-            return this.OkResult();
+            if (EvalStandardBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

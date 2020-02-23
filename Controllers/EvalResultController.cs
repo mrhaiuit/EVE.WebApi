@@ -56,9 +56,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.EvalResultHasExist));
             }
-
-            EvalResultBE.Insert(Mapper.Map<EvalResult>(req));
-            return this.OkResult();
+            if (EvalResultBE.Insert(Mapper.Map<EvalResult>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -86,9 +87,10 @@ namespace EVE.WebApi.Controllers
                 return this.ErrorResult(new Error(EnumError.EvalResultNotExist));
             }
 
-            EvalResultBE.Delete(obj);
-
-            return this.OkResult();
+            if (EvalResultBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

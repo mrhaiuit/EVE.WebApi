@@ -70,9 +70,10 @@ namespace EVE.WebApi.Controllers
                 return this.ErrorResult(new Error(EnumError.EduLevelNotExist));
             }
 
-            EduLevelBE.Delete(obj);
-
-            return this.OkResult();
+            if (EduLevelBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

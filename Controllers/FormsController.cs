@@ -56,9 +56,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.FormsHasExist));
             }
-
-            FormsBE.Insert(Mapper.Map<Form>(req));
-            return this.OkResult();
+            if (FormsBE.Insert(Mapper.Map<Form>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -72,9 +73,10 @@ namespace EVE.WebApi.Controllers
 
             Mapper.Map(req, obj);
 
-            FormsBE.Update(obj);
-
-            return this.OkResult();
+            if (FormsBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -86,9 +88,10 @@ namespace EVE.WebApi.Controllers
                 return this.ErrorResult(new Error(EnumError.FormsNotExist));
             }
 
-            FormsBE.Delete(obj);
-
-            return this.OkResult();
+            if (FormsBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

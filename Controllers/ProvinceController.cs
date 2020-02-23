@@ -56,10 +56,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.ProvinceNotExist));
             }
-
-            ProvinceBE.Delete(obj);
-
-            return this.OkResult();
+            if (ProvinceBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

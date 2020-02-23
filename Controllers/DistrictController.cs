@@ -70,9 +70,10 @@ namespace EVE.WebApi.Controllers
                 return this.ErrorResult(new Error(EnumError.DistrictNotExist));
             }
 
-            DistrictBE.Delete(obj);
-
-            return this.OkResult();
+            if (DistrictBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

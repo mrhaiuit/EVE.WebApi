@@ -68,8 +68,10 @@ namespace EVE.WebApi.Controllers
                 return this.ErrorResult(new Error(EnumError.EvalPeriodHasExist));
             }
 
-            EvalPeriodBE.Insert(Mapper.Map<EvalPeriod>(req));
-            return this.OkResult();
+            if (EvalPeriodBE.Insert(Mapper.Map<EvalPeriod>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -82,10 +84,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            EvalPeriodBE.Update(obj);
-
-            return this.OkResult();
+            if (EvalPeriodBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -96,10 +98,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.EvalPeriodNotExist));
             }
-
-            EvalPeriodBE.Delete(obj);
-
-            return this.OkResult();
+            if (EvalPeriodBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

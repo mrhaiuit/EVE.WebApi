@@ -68,9 +68,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.EvalCriteriaHasExist));
             }
-
-            EvalCriteriaBE.Insert(Mapper.Map<EvalCriteria>(req));
-            return this.OkResult();
+            if (EvalCriteriaBE.Insert(Mapper.Map<EvalCriteria>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -83,10 +84,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            EvalCriteriaBE.Update(obj);
-
-            return this.OkResult();
+            if (EvalCriteriaBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -98,9 +99,10 @@ namespace EVE.WebApi.Controllers
                 return this.ErrorResult(new Error(EnumError.EvalCriteriaNotExist));
             }
 
-            EvalCriteriaBE.Delete(obj);
-
-            return this.OkResult();
+            if (EvalCriteriaBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

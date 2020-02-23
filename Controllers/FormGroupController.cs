@@ -56,9 +56,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.FormGroupHasExist));
             }
-
-            FormGroupBE.Insert(Mapper.Map<FormGroup>(req));
-            return this.OkResult();
+            if (FormGroupBE.Insert(Mapper.Map<FormGroup>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -71,10 +72,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            FormGroupBE.Update(obj);
-
-            return this.OkResult();
+            if (FormGroupBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -85,10 +86,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.FormGroupNotExist));
             }
-
-            FormGroupBE.Delete(obj);
-
-            return this.OkResult();
+            if (FormGroupBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

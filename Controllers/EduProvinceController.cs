@@ -36,6 +36,20 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
+
+        [Route("GetByUserGroupEmployee")]
+        public async Task<HttpResponseMessage> GetByUserGroupEmployee([FromUri]UserGroupEmployeeReq req)
+        {
+            var objs = await EduProvinceBE.GetByUserGroupEmployee(req);
+            if (objs != null
+               && objs.Any())
+            {
+                return this.OkResult(objs);
+            }
+
+            return this.ErrorResult(new Error(EnumError.DataNotFound));
+        }
+
         [Route("getById")]
         public async Task<HttpResponseMessage> GetById([FromUri] EduProvinceGetByIdReq req)
         {
@@ -56,9 +70,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.EduProvinceHasExist));
             }
-
-            EduProvinceBE.Insert(Mapper.Map<EduProvince>(req));
-            return this.OkResult();
+            if (EduProvinceBE.Insert(Mapper.Map<EduProvince>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -71,10 +86,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            EduProvinceBE.Update(obj);
-
-            return this.OkResult();
+            if (EduProvinceBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -86,9 +101,11 @@ namespace EVE.WebApi.Controllers
                 return this.ErrorResult(new Error(EnumError.EduProvinceNotExist));
             }
 
-            EduProvinceBE.Delete(obj);
 
-            return this.OkResult();
+            if (EduProvinceBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

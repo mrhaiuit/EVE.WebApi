@@ -56,9 +56,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.UserGroupFormHasExist));
             }
-
-            UserGroupFormBE.Insert(Mapper.Map<UserGroup_Form>(req));
-            return this.OkResult();
+            if (UserGroupFormBE.Insert(Mapper.Map<UserGroup_Form>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -71,10 +72,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            UserGroupFormBE.Update(obj);
-
-            return this.OkResult();
+            if (UserGroupFormBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -85,10 +86,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.UserGroupFormNotExist));
             }
-
-            UserGroupFormBE.Delete(obj);
-
-            return this.OkResult();
+            if (UserGroupFormBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

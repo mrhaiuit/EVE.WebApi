@@ -56,9 +56,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.LoginUserHasExist));
             }
-
-            LoginUserBE.Insert(Mapper.Map<LoginUser>(req));
-            return this.OkResult();
+            if (LoginUserBE.Insert(Mapper.Map<LoginUser>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -71,10 +72,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            LoginUserBE.Update(obj);
-
-            return this.OkResult();
+            if (LoginUserBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -86,9 +87,10 @@ namespace EVE.WebApi.Controllers
                 return this.ErrorResult(new Error(EnumError.LoginUserNotExist));
             }
 
-            LoginUserBE.Delete(obj);
-
-            return this.OkResult();
+            if (LoginUserBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

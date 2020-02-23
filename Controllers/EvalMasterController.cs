@@ -71,9 +71,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.EvalMasterHasExist));
             }
-
-            EvalMasterBE.Insert(Mapper.Map<EvalMaster>(req));
-            return this.OkResult();
+            if (EvalMasterBE.Insert(Mapper.Map<EvalMaster>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -86,10 +87,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            EvalMasterBE.Update(obj);
-
-            return this.OkResult();
+            if (EvalMasterBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -100,10 +101,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.EvalMasterNotExist));
             }
-
-            EvalMasterBE.Delete(obj);
-
-            return this.OkResult();
+            if (EvalMasterBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

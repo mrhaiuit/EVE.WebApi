@@ -68,9 +68,10 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.UserGroupHasExist));
             }
-
-            UserGroupBE.Insert(Mapper.Map<UserGroup>(req));
-            return this.OkResult();
+            if (UserGroupBE.Insert(Mapper.Map<UserGroup>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
         }
 
         [HttpPut]
@@ -83,10 +84,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            UserGroupBE.Update(obj);
-
-            return this.OkResult();
+            if (UserGroupBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -98,9 +99,10 @@ namespace EVE.WebApi.Controllers
                 return this.ErrorResult(new Error(EnumError.UserGroupNotExist));
             }
 
-            UserGroupBE.Delete(obj);
-
-            return this.OkResult();
+            if (UserGroupBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }

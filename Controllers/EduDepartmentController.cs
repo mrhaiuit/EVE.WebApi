@@ -33,7 +33,21 @@ namespace EVE.WebApi.Controllers
                 return this.OkResult(objs.ToList());
             }
 
-            return this.OkResult();
+            return this.ErrorResult(new Error(EnumError.DataNotFound));
+        }
+
+
+        [Route("GetByUserGroupEmployee")]
+        public async Task<HttpResponseMessage> GetByUserGroupEmployee([FromUri]UserGroupEmployeeReq req)
+        {
+            var objs = await EduDepartmentBE.GetByUserGroupEmployee(req);
+            if (objs != null
+               && objs.Any())
+            {
+                return this.OkResult(objs);
+            }
+
+            return this.ErrorResult(new Error(EnumError.DataNotFound));
         }
 
         [Route("GetByEduProvinceId")]
@@ -46,7 +60,7 @@ namespace EVE.WebApi.Controllers
                 return this.OkResult(objs);
             }
 
-            return this.OkResult();
+            return this.ErrorResult(new Error(EnumError.DataNotFound));
         }
 
         [Route("getById")]
@@ -70,8 +84,11 @@ namespace EVE.WebApi.Controllers
                 return this.ErrorResult(new Error(EnumError.EduDepartmentHasExist));
             }
 
-            EduDepartmentBE.Insert(Mapper.Map<EduDepartment>(req));
-            return this.OkResult();
+            if (EduDepartmentBE.Insert(Mapper.Map<EduDepartment>(req)))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.InsertFailse));
+
         }
 
         [HttpPut]
@@ -84,10 +101,10 @@ namespace EVE.WebApi.Controllers
             }
 
             Mapper.Map(req, obj);
-
-            EduDepartmentBE.Update(obj);
-
-            return this.OkResult();
+            if (EduDepartmentBE.Update(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.UpdateFailse));
         }
 
         [HttpDelete]
@@ -99,9 +116,10 @@ namespace EVE.WebApi.Controllers
                 return this.ErrorResult(new Error(EnumError.EduDepartmentNotExist));
             }
 
-            EduDepartmentBE.Delete(obj);
-
-            return this.OkResult();
+            if (EduDepartmentBE.Delete(obj))
+                return this.OkResult();
+            else
+                return this.ErrorResult(new Error(EnumError.DeleteFailse));
         }
     }
 }
