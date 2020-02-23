@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 using EVE.ApiModels.Authentication.Request;
+using EVE.ApiModels.Catalog;
 using EVE.Bussiness;
 using EVE.Commons;
 using EVE.Data;
@@ -34,6 +35,18 @@ namespace EVE.WebApi.Controllers
             }
 
             return this.OkResult();
+        }
+
+        [Route("GetByUserGroupEmployee")]
+        public async Task<HttpResponseMessage> GetByUserGroupEmployee([FromUri] UserGroupEmployeeReq req)
+        {
+            var obj = await employeeBE.GetByUserGroupEmployee(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.EmployeeNotExist));
         }
 
         [Route("getById")]
