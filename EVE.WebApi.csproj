@@ -186,6 +186,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="AutoMapper\MapperProfile.cs" />
+    <Compile Include="Controllers\SchoolDepartmentController.cs" />
     <Compile Include="Controllers\EduLevelController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\DistrictController.cs" />
