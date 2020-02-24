@@ -40,9 +40,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("ExeEvalDetailByMasterId")]
-        public HttpResponseMessage ExeEvalDetailByMasterId([FromUri] ExeEvalDetailByMasterIdReq req)
+        public async Task<HttpResponseMessage> ExeEvalDetailByMasterId([FromBody] ExeEvalDetailByMasterIdReq req)
         {
-            var obj = EvalMasterBE.ExeEvalDetailByMasterId(req);
+            var obj = await EvalMasterBE.ExeEvalDetailByMasterId(req);
             if (obj != null)
             {
                 return this.OkResult(obj);
@@ -52,9 +52,9 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("getEvalDetailByMasterId")]
-        public HttpResponseMessage GetEvalDetailByMasterId([FromUri] EvalMasterBaseReq req)
+        public async Task<HttpResponseMessage> GetEvalDetailByMasterId([FromUri] EvalMasterBaseReq req)
         {
-            var obj = EvalMasterBE.GetEvalDetailByMasterId(req);
+            var obj =await EvalMasterBE.GetEvalDetailByMasterId(req);
             if (obj != null)
             {
                 return this.OkResult(obj);
