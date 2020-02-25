@@ -24,7 +24,7 @@ namespace EVE.WebApi.Controllers
         {
             EvalDetailBE = evalDetailBE;
             EvalMasterBE = evalMasterBE;
-        } 
+        }
 
         [Route("all")]
         public async Task<HttpResponseMessage> GetAll()
@@ -39,10 +39,25 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
+
+        //   Task<EvalResultSumaryRes> GetEvalResultSumary(ExeEvalDetailByMasterIdReq req)
+        [Route("GetEvalResultSumary")]
+        public async Task<HttpResponseMessage> GetEvalResultSumary([FromUri] ExeEvalDetailByMasterIdReq req)
+        {
+            var obj = await EvalMasterBE.GetEvalResultSumary(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.EvalDetailNotExist));
+        } 
+
         [Route("ExeEvalDetailByMasterId")]
         public async Task<HttpResponseMessage> ExeEvalDetailByMasterId([FromBody] ExeEvalDetailByMasterIdReq req)
         {
             var obj = await EvalMasterBE.ExeEvalDetailByMasterId(req);
+            var obj1 = obj.Select(p => new { p.EvalStandardName, p.EvalStandardId }).Distinct();
             if (obj != null)
             {
                 return this.OkResult(obj);
