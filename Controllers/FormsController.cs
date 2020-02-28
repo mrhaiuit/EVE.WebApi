@@ -35,6 +35,19 @@ namespace EVE.WebApi.Controllers
 
             return this.OkResult();
         }
+        // Task<List<Form>> GetFormsByPermission(UserGroupBaseReq req)
+        [Route("GetFormsByPermission")]
+        public async Task<HttpResponseMessage> GetFormsByPermission([FromUri] UserGroupBaseReq req)
+        {
+            var obj = await FormsBE.GetFormsByPermission(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.FormsNotExist));
+        }
+
 
         [Route("getById")]
         public async Task<HttpResponseMessage> GetById([FromUri] FormsGetByIdReq req)
