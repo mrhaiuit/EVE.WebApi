@@ -36,7 +36,18 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
-        //Task<List<EvalDetailByYearAndUserRes>> GetByByYearAndUser(EvalDetailByYearAndUserReq req)
+        [Route("GetGroupResultByYearAndUser")]
+        public async Task<HttpResponseMessage> GetGroupResultByYearAndUser([FromUri] EvalDetailByYearAndUserReq req)
+        {
+            var obj = await EvalDetailBE.GetGroupResultByYearAndUser(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.EvalDetailNotExist));
+        }
+
         [Route("GetByByYearAndUser")]
         public async Task<HttpResponseMessage> GetByByYearAndUser([FromUri] EvalDetailByYearAndUserReq req)
         {
