@@ -15,7 +15,7 @@ using EVE.WebApi.Shared.Response;
 
 namespace EVE.WebApi.Controllers
 {
-    [RoutePrefix("auth")]
+    [RoutePrefix("report")]
     public class ReportController : BaseController
     {
         public readonly IReportBE ReportBE;

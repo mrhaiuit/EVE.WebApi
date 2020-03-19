@@ -47,6 +47,19 @@ namespace EVE.WebApi.Controllers
 
             return this.ErrorResult(new Error(EnumError.UserGroupNotExist));
         }
+        // Task<List<UserGroup>> GetByUserGroup(UserGroupBaseReq userGroup)
+
+        [Route("GetByUserGroup")]
+        public async Task<HttpResponseMessage> GetByUserGroup([FromUri] UserGroupBaseReq userGroup)
+        {
+            var obj = await UserGroupBE.GetByUserGroup(userGroup);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.UserGroupNotExist));
+        }
 
         [Route("GetFormsByUserGroup")]
         public async Task<HttpResponseMessage> GetFormsByUserGroup([FromUri] UserGroupBaseReq userGroup)
