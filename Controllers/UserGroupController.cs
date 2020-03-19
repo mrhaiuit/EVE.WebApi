@@ -49,7 +49,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("GetFormsByUserGroup")]
-        public async Task<HttpResponseMessage> GetFormsByUserGroup([FromUri] string userGroup)
+        public async Task<HttpResponseMessage> GetFormsByUserGroup([FromUri] UserGroupBaseReq userGroup)
         {
             var obj = await UserGroupBE.GetFormsByUserGroup(userGroup);
             if (obj != null)
