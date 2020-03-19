@@ -39,8 +39,43 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
+        [Route("CompleteFinal")]
+        public async Task<HttpResponseMessage> CompleteFinal([FromUri] EvalMasterBaseReq req)
+        {
+            var evalMaster = await EvalMasterBE.GetById(req);
+            if (evalMaster == null)
+                return this.ErrorResult(new Error(EnumError.EvalMasterNotExist));
 
-        //   Task<EvalResultSumaryRes> GetEvalResultSumary(ExeEvalDetailByMasterIdReq req)
+            var objExits = (await EvalMasterBE.GetAsync(p => p.EvalPeriodId == evalMaster.EvalPeriodId))?.FirstOrDefault();
+            if(objExits!=null && objExits.EvalMasterId == req.EvalMasterId)
+            {
+                return this.ErrorResult(new Error(EnumError.EvalMasterFinalHasExits));
+            }
+            var obj = await EvalMasterBE.CompleteFinal(req);
+            if (obj)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.UpdateFaile));
+        }
+
+        [Route("CancelFinal")]
+        public async Task<HttpResponseMessage> CancelFinal([FromUri] EvalMasterBaseReq req)
+        {
+            var evalMaster = await EvalMasterBE.GetById(req);
+            if (evalMaster == null)
+                return this.ErrorResult(new Error(EnumError.EvalMasterNotExist));
+
+            var obj = await EvalMasterBE.CancelFinal(req);
+            if (obj)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.UpdateFaile));
+        }
+
         [Route("GetEvalResultSumary")]
         public async Task<HttpResponseMessage> GetEvalResultSumary([FromUri] ExeEvalDetailByMasterIdReq req)
         {

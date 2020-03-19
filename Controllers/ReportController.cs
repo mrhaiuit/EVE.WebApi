@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 using EVE.ApiModels.Authentication.Request;
+using EVE.ApiModels.Catalog;
 using EVE.Bussiness;
 using EVE.Commons;
 using EVE.Data;
@@ -17,28 +18,40 @@ namespace EVE.WebApi.Controllers
     [RoutePrefix("auth")]
     public class ReportController : BaseController
     {
-        public readonly ILoginBE _loginBE;
-        public ReportController(ILoginBE loginBE,
+        public readonly IReportBE ReportBE;
+        public ReportController(IReportBE reportBE,
                                IMapper mapper) : base(mapper)
         {
-            _loginBE = loginBE;
+            ReportBE = reportBE;
         }
 
 
         [HttpGet]
-        [Route("GetUserGroupByUserName")]
-        public async Task<HttpResponseMessage> GetUserGroupByUserName([FromUri]UserNameReq req)
+        [Route("rptBM02")]
+        public async Task<HttpResponseMessage> rptBM02([FromUri]BM2Req req)
         {
             try
             {
-                var obj = await _loginBE.GetUserGroupByUserName(req);
-                if (obj == null || !obj.Any())
-                {
-                    return this.ErrorResult(new Error(EnumError.UserNotGrandPermission));
-                }
+                var obj = await ReportBE.rptBm02(req);
                 return this.OkResult(obj);
             }
             catch(Exception ex)
+            {
+                return this.ErrorResult(new Error("", ex.Message));
+            }
+        }
+
+
+        [HttpGet]
+        [Route("rptBM04")]
+        public async Task<HttpResponseMessage> rptBM04([FromUri]BM4Req req)
+        {
+            try
+            {
+                var obj = await ReportBE.rptBm04(req);
+                return this.OkResult(obj);
+            }
+            catch (Exception ex)
             {
                 return this.ErrorResult(new Error("", ex.Message));
             }
