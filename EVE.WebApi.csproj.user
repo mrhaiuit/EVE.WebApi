@@ -10,7 +10,6 @@
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NameOfLastUsedPublishProfile>ftp_Eve</NameOfLastUsedPublishProfile>
-    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

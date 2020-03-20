@@ -56,5 +56,20 @@ namespace EVE.WebApi.Controllers
                 return this.ErrorResult(new Error("", ex.Message));
             }
         }
+
+        [HttpGet]
+        [Route("rptBM05")]
+        public async Task<HttpResponseMessage> rptBM05([FromUri]EvalPeriodBaseReq req)
+        {
+            try
+            {
+                var obj = await ReportBE.rptBm05(req);
+                return this.OkResult(obj);
+            }
+            catch (Exception ex)
+            {
+                return this.ErrorResult(new Error("", ex.Message));
+            }
+        }
     }
 }
