@@ -40,7 +40,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("CompleteFinal")]
-        public async Task<HttpResponseMessage> CompleteFinal([FromUri] EvalMasterBaseReq req)
+        public async Task<HttpResponseMessage> CompleteFinal([FromBody] EvalMasterBaseReq req)
         {
             var evalMaster = await EvalMasterBE.GetById(req);
             if (evalMaster == null)
@@ -61,7 +61,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("CancelFinal")]
-        public async Task<HttpResponseMessage> CancelFinal([FromUri] EvalMasterBaseReq req)
+        public async Task<HttpResponseMessage> CancelFinal([FromBody] EvalMasterBaseReq req)
         {
             var evalMaster = await EvalMasterBE.GetById(req);
             if (evalMaster == null)

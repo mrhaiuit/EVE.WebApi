@@ -140,10 +140,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/20/2020 07:07:45</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.dll">
-      <publishTime>03/20/2020 07:07:49</publishTime>
+      <publishTime>03/20/2020 07:19:44</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.pdb">
-      <publishTime>03/20/2020 07:07:49</publishTime>
+      <publishTime>03/20/2020 07:19:44</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.Shared.dll">
       <publishTime>03/20/2020 07:07:47</publishTime>
