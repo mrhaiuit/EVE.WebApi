@@ -104,22 +104,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/14/2020 10:22:40</publishTime>
     </File>
     <File Include="bin/EVE.ApiModels.dll">
-      <publishTime>03/29/2020 19:46:11</publishTime>
+      <publishTime>03/29/2020 19:49:35</publishTime>
     </File>
     <File Include="bin/EVE.ApiModels.dll.config">
       <publishTime>03/14/2020 10:18:57</publishTime>
     </File>
     <File Include="bin/EVE.ApiModels.pdb">
-      <publishTime>03/29/2020 19:46:11</publishTime>
+      <publishTime>03/29/2020 19:49:35</publishTime>
     </File>
     <File Include="bin/EVE.Bussiness.dll">
-      <publishTime>03/29/2020 19:46:23</publishTime>
+      <publishTime>04/01/2020 09:51:00</publishTime>
     </File>
     <File Include="bin/EVE.Bussiness.dll.config">
       <publishTime>03/14/2020 10:18:39</publishTime>
     </File>
     <File Include="bin/EVE.Bussiness.pdb">
-      <publishTime>03/29/2020 19:46:23</publishTime>
+      <publishTime>04/01/2020 09:51:00</publishTime>
     </File>
     <File Include="bin/EVE.Commons.dll">
       <publishTime>03/29/2020 19:46:10</publishTime>
@@ -140,10 +140,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/29/2020 19:44:32</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.dll">
-      <publishTime>03/29/2020 19:46:24</publishTime>
+      <publishTime>04/01/2020 09:51:00</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.pdb">
-      <publishTime>03/29/2020 19:46:24</publishTime>
+      <publishTime>04/01/2020 09:51:00</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.Shared.dll">
       <publishTime>03/29/2020 19:46:11</publishTime>
