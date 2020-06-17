@@ -111,7 +111,6 @@ namespace EVE.WebApi.Controllers
 
             return this.ErrorResult(new Error(EnumError.EvalMasterNotExist));
         }
-        // Task<List<EvalMaster>> GetEvalByUserId(EvalMasterGetByUserIdReq req)
 
         [Route("ExeEvalDetailByMasterId")]
         public async Task<HttpResponseMessage> ExeEvalDetailByMasterId([FromBody] ExeEvalDetailByMasterIdReq req)
@@ -149,6 +148,15 @@ namespace EVE.WebApi.Controllers
 
             return this.ErrorResult(new Error(EnumError.EvalMasterNotExist));
         }
+
+        [Route("IsAllowEdit")]
+        public async Task<HttpResponseMessage> IsAllowEdit([FromUri] EvalMasterBaseReq req)
+        {
+            var obj = await EvalMasterBE.IsAllowEdit(req);
+
+            return this.OkResult(obj);
+        }
+        //  Task<bool> IsAllowEdit(EvalMasterBaseReq req)
 
         [HttpPost]
         public async Task<HttpResponseMessage> Insert(EvalMasterInsertReq req)
