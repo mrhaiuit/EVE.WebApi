@@ -113,13 +113,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/17/2020 21:56:25</publishTime>
     </File>
     <File Include="bin/EVE.Bussiness.dll">
-      <publishTime>06/17/2020 22:07:11</publishTime>
+      <publishTime>06/17/2020 22:13:01</publishTime>
     </File>
     <File Include="bin/EVE.Bussiness.dll.config">
       <publishTime>03/14/2020 10:18:39</publishTime>
     </File>
     <File Include="bin/EVE.Bussiness.pdb">
-      <publishTime>06/17/2020 22:07:11</publishTime>
+      <publishTime>06/17/2020 22:13:01</publishTime>
     </File>
     <File Include="bin/EVE.Commons.dll">
       <publishTime>06/17/2020 21:56:24</publishTime>
@@ -140,10 +140,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/17/2020 21:56:23</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.dll">
-      <publishTime>06/17/2020 22:07:12</publishTime>
+      <publishTime>06/17/2020 22:13:02</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.pdb">
-      <publishTime>06/17/2020 22:07:12</publishTime>
+      <publishTime>06/17/2020 22:13:02</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.Shared.dll">
       <publishTime>06/17/2020 21:56:25</publishTime>
