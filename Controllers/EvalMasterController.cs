@@ -86,7 +86,32 @@ namespace EVE.WebApi.Controllers
             }
 
             return this.ErrorResult(new Error(EnumError.EvalDetailNotExist));
-        } 
+        }
+
+        [Route("GetEvalByUserId")]
+        public async Task<HttpResponseMessage> GetEvalByUserId([FromUri] EvalMasterGetByUserIdReq req)
+        {
+            var obj = await EvalMasterBE.GetEvalByUserId(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.EvalMasterNotExist));
+        }
+
+        [Route("GetSelfEvalByUserId")]
+        public async Task<HttpResponseMessage> GetSelfEvalByUserId([FromUri] EvalMasterGetByUserIdReq req)
+        {
+            var obj = await EvalMasterBE.GetSelfEvalByUserId(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.EvalMasterNotExist));
+        }
+        // Task<List<EvalMaster>> GetEvalByUserId(EvalMasterGetByUserIdReq req)
 
         [Route("ExeEvalDetailByMasterId")]
         public async Task<HttpResponseMessage> ExeEvalDetailByMasterId([FromBody] ExeEvalDetailByMasterIdReq req)
