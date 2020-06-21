@@ -104,31 +104,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/14/2020 10:22:40</publishTime>
     </File>
     <File Include="bin/EVE.ApiModels.dll">
-      <publishTime>06/17/2020 21:56:25</publishTime>
+      <publishTime>06/21/2020 17:13:09</publishTime>
     </File>
     <File Include="bin/EVE.ApiModels.dll.config">
       <publishTime>03/14/2020 10:18:57</publishTime>
     </File>
     <File Include="bin/EVE.ApiModels.pdb">
-      <publishTime>06/17/2020 21:56:25</publishTime>
+      <publishTime>06/21/2020 17:13:09</publishTime>
     </File>
     <File Include="bin/EVE.Bussiness.dll">
-      <publishTime>06/17/2020 22:13:01</publishTime>
+      <publishTime>06/21/2020 17:13:09</publishTime>
     </File>
     <File Include="bin/EVE.Bussiness.dll.config">
       <publishTime>03/14/2020 10:18:39</publishTime>
     </File>
     <File Include="bin/EVE.Bussiness.pdb">
-      <publishTime>06/17/2020 22:13:01</publishTime>
+      <publishTime>06/21/2020 17:13:09</publishTime>
     </File>
     <File Include="bin/EVE.Commons.dll">
-      <publishTime>06/17/2020 21:56:24</publishTime>
+      <publishTime>06/21/2020 17:13:08</publishTime>
     </File>
     <File Include="bin/EVE.Commons.dll.config">
       <publishTime>03/14/2020 10:19:16</publishTime>
     </File>
     <File Include="bin/EVE.Commons.pdb">
-      <publishTime>06/17/2020 21:56:24</publishTime>
+      <publishTime>06/21/2020 17:13:08</publishTime>
     </File>
     <File Include="bin/EVE.Data.dll">
       <publishTime>06/17/2020 21:56:23</publishTime>
@@ -140,19 +140,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/17/2020 21:56:23</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.dll">
-      <publishTime>06/17/2020 22:13:02</publishTime>
+      <publishTime>06/21/2020 17:13:10</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.pdb">
-      <publishTime>06/17/2020 22:13:02</publishTime>
+      <publishTime>06/21/2020 17:13:10</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.Shared.dll">
-      <publishTime>06/17/2020 21:56:25</publishTime>
+      <publishTime>06/21/2020 17:13:09</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.Shared.dll.config">
       <publishTime>03/14/2020 10:19:45</publishTime>
     </File>
     <File Include="bin/EVE.WebApi.Shared.pdb">
-      <publishTime>06/17/2020 21:56:25</publishTime>
+      <publishTime>06/21/2020 17:13:09</publishTime>
     </File>
     <File Include="bin/FluentValidation.dll">
       <publishTime>03/14/2020 10:22:40</publishTime>

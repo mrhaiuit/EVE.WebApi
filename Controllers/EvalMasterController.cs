@@ -150,7 +150,7 @@ namespace EVE.WebApi.Controllers
         }
 
         [Route("IsAllowEdit")]
-        public async Task<HttpResponseMessage> IsAllowEdit([FromUri] EvalMasterBaseReq req)
+        public async Task<HttpResponseMessage> IsAllowEdit([FromBody] EvalMasterBaseReq req)
         {
             var obj = await EvalMasterBE.IsAllowEdit(req);
 
