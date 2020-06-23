@@ -35,6 +35,33 @@ namespace EVE.WebApi.Controllers
 
             return this.OkResult();
         }
+        // Task<List<EvalPeriod>> GetByUserGroupAndType(EvalPeriodByUserGroupAndTypeReq req)
+        [Route("GetByUserGroupAndType")]
+        public async Task<HttpResponseMessage> GetByUserGroupAndType([FromUri] EvalPeriodByUserGroupAndTypeReq req)
+        {
+            var obj = await EvalPeriodBE.GetByUserGroupAndType(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.EvalPeriodNotExist));
+        }
+
+
+        [Route("GetByUserGroupEmployee")]
+        public async Task<HttpResponseMessage> GetByUserGroupEmployee([FromUri] UserGroupEmployeeReq req)
+        {
+            var obj =await EvalPeriodBE.GetByUserGroupEmployee(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.EvalPeriodNotExist));
+        }
+
+
         [Route("GetByYearAndSchool")]
         public async Task<HttpResponseMessage> GetByYearAndSchool([FromUri] EvalPeriodGetByYearAndSchoolReq req)
         {
