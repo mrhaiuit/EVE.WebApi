@@ -76,6 +76,21 @@ namespace EVE.WebApi.Controllers
             return this.ErrorResult(new Error(EnumError.UpdateFaile));
         }
 
+        // Task<string> GetEvalResult(EvalMasterBaseReq req)
+
+
+        [Route("GetEvalResult")]
+        public async Task<HttpResponseMessage> GetEvalResult([FromUri] EvalMasterBaseReq req)
+        {
+            var obj = await EvalMasterBE.GetEvalResult(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.EvalMasterNotExist));
+        }
+
         [Route("GetEvalResultSumary")]
         public async Task<HttpResponseMessage> GetEvalResultSumary([FromUri] ExeEvalDetailByMasterIdReq req)
         {
