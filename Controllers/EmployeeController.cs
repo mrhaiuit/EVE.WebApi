@@ -37,6 +37,19 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
+        [Route("GetSubPrincipals")]
+        public async Task<HttpResponseMessage> GetSubPrincipals([FromUri] SchoolBaseReq req)
+        {
+            var obj = await employeeBE.GetSubPrincipals(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.EmployeeNotExist));
+        }
+
+
         [Route("GetByUserGroupEmployee")]
         public async Task<HttpResponseMessage> GetByUserGroupEmployee([FromUri] UserGroupEmployeeReq req)
         {

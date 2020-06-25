@@ -57,6 +57,9 @@ namespace EVE.WebApi.Authentication.AutoMapper
             CreateMap<UserGroupEmployeeUpdateReq, UserGroup_Employee>().ReverseMap();
             CreateMap<UserGroupFormInsertReq, UserGroup_Form>().ReverseMap();
             CreateMap<UserGroupFormUpdateReq, UserGroup_Form>().ReverseMap();
+
+            CreateMap<SubPrincipalCriteriaInsertReq, SubPrincipalCriteria>().ReverseMap();
+            CreateMap<SubPrincipalCriteriaUpdateReq, SubPrincipalCriteria>().ReverseMap();
         }
     }
 }

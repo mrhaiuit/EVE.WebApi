@@ -35,7 +35,8 @@ namespace EVE.WebApi.Controllers
 
             return this.OkResult();
         }
-        // Task<List<EvalPeriod>> GetByUserGroupAndType(EvalPeriodByUserGroupAndTypeReq req)
+       
+
         [Route("GetByUserGroupAndType")]
         public async Task<HttpResponseMessage> GetByUserGroupAndType([FromUri] EvalPeriodByUserGroupAndTypeReq req)
         {
@@ -65,7 +66,7 @@ namespace EVE.WebApi.Controllers
         [Route("GetByYearAndSchool")]
         public async Task<HttpResponseMessage> GetByYearAndSchool([FromUri] EvalPeriodGetByYearAndSchoolReq req)
         {
-            var obj =  EvalPeriodBE.GetByYearAndSchool(req);
+            var obj = await Task.Run(() => EvalPeriodBE.GetByYearAndSchool(req));
             if (obj != null)
             {
                 return this.OkResult(obj);

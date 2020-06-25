@@ -36,6 +36,19 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
+        [Route("GetByEvalTypeAndLevel")]
+        public async Task<HttpResponseMessage> GetBySchoolLevel([FromUri] GetByEvalTypeSchoolLevelReq req)
+        {
+            var obj = await EvalCriteriaBE.GetBySchoolLevel(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.EvalCriteriaNotExist));
+        }
+
+
         [Route("GetByStandardId")]
         public async Task<HttpResponseMessage> GetByStandardId([FromUri] EvalStandardBaseReq req)
         {
