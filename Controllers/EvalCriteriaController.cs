@@ -36,7 +36,7 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
-        [Route("GetByEvalTypeAndLevel")]
+        [Route("GetBySchoolLevel")]
         public async Task<HttpResponseMessage> GetBySchoolLevel([FromUri] GetByEvalTypeSchoolLevelReq req)
         {
             var obj = await EvalCriteriaBE.GetBySchoolLevel(req);
