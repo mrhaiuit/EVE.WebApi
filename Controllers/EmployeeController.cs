@@ -50,6 +50,19 @@ namespace EVE.WebApi.Controllers
         }
 
 
+        [Route("GetAllPrincipals")]
+        public async Task<HttpResponseMessage> GetAllPrincipals([FromUri] SchoolBaseReq req)
+        {
+            var obj = await employeeBE.GetAllPrincipals(req);
+            if (obj != null)
+            {
+                return this.OkResult(obj);
+            }
+
+            return this.ErrorResult(new Error(EnumError.EmployeeNotExist));
+        }
+
+
         [Route("GetByUserGroupEmployee")]
         public async Task<HttpResponseMessage> GetByUserGroupEmployee([FromUri] UserGroupEmployeeReq req)
         {
