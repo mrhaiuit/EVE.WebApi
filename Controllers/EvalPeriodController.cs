@@ -95,7 +95,17 @@ namespace EVE.WebApi.Controllers
             {
                 return this.ErrorResult(new Error(EnumError.EvalPeriodHasExist));
             }
-
+            var evalPeriodBySchoolYearTypeReq = new EvalPeriodBySchoolYearTypeReq
+            {
+                SchoolId = req.SchoolId ?? 0,
+                Year = req.Year ?? 0,
+                EvalTypeCode = req.EvalTypeCode
+            };
+            var objPeriod = await EvalPeriodBE.GetBySchoolYearType(evalPeriodBySchoolYearTypeReq);
+            if(objPeriod!=null)
+            {
+                return this.ErrorResult(new Error(EnumError.PeriodIsExits));
+            }    
             if (EvalPeriodBE.Insert(Mapper.Map<EvalPeriod>(req)))
                 return this.OkResult();
             else

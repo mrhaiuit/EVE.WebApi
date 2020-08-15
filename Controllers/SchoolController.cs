@@ -49,6 +49,19 @@ namespace EVE.WebApi.Controllers
             return this.OkResult();
         }
 
+        [Route("SearchByName")]
+        public async Task<HttpResponseMessage> SearchByName([FromUri]SchoolSearchByNameReq req)
+        {
+            var objs = await SchoolBE.SearchByName(req);
+            if (objs != null
+               && objs.Any())
+            {
+                return this.OkResult(objs);
+            }
+
+            return this.OkResult();
+        }
+
         [Route("GetByEduDepartmentId")]
         public async Task<HttpResponseMessage> GetByEduDepartmentId([FromUri]EduDepartmentBaseReq req)
         {

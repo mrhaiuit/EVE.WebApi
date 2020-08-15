@@ -50,6 +50,19 @@ namespace EVE.WebApi.Controllers
             return this.ErrorResult(new Error(EnumError.DataNotFound));
         }
 
+        [Route("SearchByName")]
+        public async Task<HttpResponseMessage> SearchByName([FromUri]EduDepartmentSearchByNameReq req)
+        {
+            var objs = await EduDepartmentBE.SearchByName(req);
+            if (objs != null
+               && objs.Any())
+            {
+                return this.OkResult(objs);
+            }
+
+            return this.ErrorResult(new Error(EnumError.DataNotFound));
+        }
+
         [Route("GetByEduProvinceId")]
         public async Task<HttpResponseMessage> GetByEduProvinceId([FromUri]EduProvinceBaseReq req)
         {
